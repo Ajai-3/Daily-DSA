@@ -1,5 +1,5 @@
-// BFS - is a graph traversal algorithm, it visits all the neighbors before going to next level
-// It uses Queue
+// DFS - is a graph traversal algorithm, it explores as deep as possible before backtracking
+// It uses Stack (or recursion)
 // Time complexity: O(V + E)
 
 class Graph {
@@ -17,27 +17,30 @@ class Graph {
         if (!this.adjacencyList[vertex1]) this.addNode(vertex1)
         if (!this.adjacencyList[vertex2]) this.addNode(vertex2)
 
-        this.adjacencyList[vertex1].push(vertex2)
-        this.adjacencyList[vertex2].push(vertex1)
+        if (!this.adjacencyList[vertex1].includes(vertex2)) {
+            this.adjacencyList[vertex1].push(vertex2)
+        }
+        if (!this.adjacencyList[vertex2].includes(vertex1)) {
+            this.adjacencyList[vertex2].push(vertex1)
+        }
     }
 
-
-    bfs(start) {
-        let queue = [start]
+    dfs(start) {
+        let stack = [start]
         let visited = new Set()
         let result = []
 
         visited.add(start)
 
-        while (queue.length) {
-            let node = queue.shift()
+        while(stack.length) {
+            let node = stack.pop()
             result.push(node)
 
-            for (let neibhour of this.adjacencyList[node]) {
-                if (!visited.has(neibhour)) {
-                     visited.add(neibhour)
-                     queue.push(neibhour)
-                }
+            for (let neighbor of this.adjacencyList[node]) {
+               if (!visited.has(neighbor)) {
+                   visited.add(neighbor)
+                   stack.push(neighbor)
+               }
             }
         }
         return result
@@ -56,4 +59,4 @@ graph.addEdges('B', 'A')
 
 console.log(graph)
 
-console.log(graph.bfs("A"))
+console.log(graph.dfs("A"))
