@@ -1,21 +1,21 @@
-function shortestPath(graph, start, end) {
-   let queue = [[start, 0]] 
-   let visited = new Set()
+function shortestPath(grpah, start, end) {
+    let queue = [[start, 0]]
+    let visited = new Set()
 
-   while(queue.length > 0) {
-    let [node, distance] = queue.shift()
+    visited.add([start, 0])
 
-    if (node === end) return distance
-    visited.add(node)
+    while(queue.length > 0) {
+        let [node, distance] = queue.shift()
+        if (node === end) return distance;
 
-    for (let neibhour of graph[node]) {
-        if (!visited.has(neibhour)) {
-            visited.add(neibhour)
-            queue.push([neibhour, distance + 1])
+        for (let neibghor of graph[node]) {
+            if (!visited.has(neibghor)) {
+                visited.add(neibghor)
+                queue.push([neibghor, distance + 1])
+            }
         }
     }
-   }
-   return -1
+    return -1
 }
 
 let graph = {
