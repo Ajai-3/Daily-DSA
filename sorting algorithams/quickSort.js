@@ -8,27 +8,27 @@
 
 // 🔥 Quick Sort Algorithm
 function quickSort(arr) {
-    if (arr.length <= 1) return arr; // ✅ Base case: return if only one or zero elements
+    if (arr.length <= 0) return arr
 
-    const pivotIndex = Math.floor(arr.length / 2); // 📌 Choosing the middle element as pivot
-    const pivot = arr[pivotIndex]; // 🎯 Pivot element
-    const left = []; // 🏗️ Left partition (elements smaller than pivot)
-    const right = []; // 🏗️ Right partition (elements greater than or equal to pivot)
+    let pivot = arr[arr.length - 1]
+    let left = []
+    let right = []
 
-    // 🔄 Partitioning step: Place elements into left or right array
     for (let i = 0; i < arr.length; i++) {
-        if (i !== pivotIndex) { // ✅ Skip the pivot itself
-            arr[i] < pivot ? left.push(arr[i]) : right.push(arr[i]); // 📌 Sorting into partitions
+        if (arr[i] === pivot) continue
+        
+        if (pivot > arr[i]) {
+            left.push(arr[i])
+        } else {
+            right.push(arr[i])
         }
     }
 
-    // 🔄 Recursively apply Quick Sort on partitions and merge the results
-    return [...quickSort(left), pivot, ...quickSort(right)];
+    return [...quickSort(left), pivot, ...quickSort(right)]
 }
 
-// 🏁 Test the function
-const array = [3, 6, 8, 10, 1, 2, 1]; // 🎲 Unsorted array
-console.log(quickSort(array)); // 📢 Output: [1, 1, 2, 3, 6, 8, 10]
+const array = [3, 6, 8, 10, 1, 2, 1];
+console.log(quickSort(array));
 
 // 📌 Time Complexity:
 // 🟩 Best case = O(n log n) ✅ (balanced partitioning)
