@@ -7,25 +7,17 @@
 // 🔹 Space complexity: O(1) (in-place sorting) 🔄  
 
 // 🔥 Bubble Sort Algorithm
-const bubbleSort = (arr) => {
-    let n = arr.length;
+let arr = [1, 4, 6, 8, 2, 3]
 
-    // 🌀 Outer loop: Runs (n-1) times
-    for (let i = 0; i < n; i++) {
-        // 🔄 Inner loop: Pushes the largest element to the right
-        for (let j = 0; j < n - i - 1; j++) {
-            // 📊 Swap if elements are in the wrong order
-            if (arr[j] > arr[j + 1]) {
-                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]; // 🔄 Swapping
-            }
+for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length - i - 1; j++) {
+        if (arr[j] > arr[j + 1]) {
+            [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
         }
     }
-    return arr; // ✅ Sorted array returned
 }
 
-// 🏁 Test the function
-let arr = [3, 7, 1, 9, 2, 7, 8, 1];  // 🎲 Unsorted array
-console.log(bubbleSort(arr));  // 📢 Output: [1, 1, 2, 3, 7, 7, 8, 9]
+console.log(arr)
 
 // 📌 Time Complexity:
 // 🟥 Worst case  = O(n²) (when array is reverse sorted) ❌
