@@ -7,32 +7,21 @@
 // 🔹 Space complexity: O(1) (in-place sorting) 🔄  
 
 // 🔥 Selection Sort Algorithm
-const selectionSort = (arr) => {
-    let n = arr.length;
+let arr = [3, 7, 1, 9, 2, 7, 8, 1];  
 
-    // 🌀 Outer loop: Moves the boundary of the sorted part
-    for (let i = 0; i < n - 1; i++) {
-        let minIndex = i; // ✅ Assume the first element is the smallest
-
-        // 🔄 Inner loop: Find the smallest element in the unsorted part
-        for (let j = i + 1; j < n; j++) {
-            if (arr[j] < arr[minIndex]) {
-                minIndex = j; // 🔍 Update minIndex if a smaller element is found
-            }
-        }
-
-        // 📊 Swap the found minimum element with the first unsorted element
-        if (minIndex !== i) {
-            [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]]; // 🔄 Swapping
-        }
-    }
-
-    return arr; // ✅ Sorted array returned
+for (let i = 0; i < arr.length; i++) {
+    let m = i
+    let val = arr[i]
+    for (let j = i + 1; j < arr.length; j++) {
+       if (val < arr[j]) {
+        val = arr[j]
+         m = j
+       }
+    }    
+    [arr[i], arr[m]] = [arr[m], arr[i]]
 }
 
-// 🏁 Test the function
-let arr = [3, 7, 1, 9, 2, 7, 8, 1];  // 🎲 Unsorted array
-console.log(selectionSort(arr));  // 📢 Output: [1, 1, 2, 3, 7, 7, 8, 9]
+console.log(arr)
 
 // 📌 Time Complexity:
 // 🟥 Worst case  = O(n²) ❌
