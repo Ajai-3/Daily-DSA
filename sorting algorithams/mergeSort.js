@@ -8,36 +8,24 @@
 
 // 🔥 Merge Sort Algorithm
 const mergeSort = (arr) => {
-    if (arr.length <= 1) return arr; // ✅ Base case: Already sorted
+   if (arr.length <= 1) return arr
+   let mid = Math.floor(arr.length / 2)
+   let left = mergeSort(arr.slice(0, mid))
+   let right  = mergeSort(arr.slice(mid))
 
-    let mid = Math.floor(arr.length / 2); // ✂️ Divide the array
-    let left = mergeSort(arr.slice(0, mid)); // 🔄 Sort left half
-    let right = mergeSort(arr.slice(mid));   // 🔄 Sort right half
-
-    return merge(left, right); // 🔀 Merge sorted halves
+   return merge(left, right)
 }
 
-// 🔄 Merge Function: Merges two sorted arrays
 const merge = (left, right) => {
-    let result = [];
-    let i = 0, j = 0;
-
-    // 🌀 Compare elements from left and right arrays
-    while (i < left.length && j < right.length) {
-        if (left[i] < right[j]) {
-            result.push(left[i]);
-            i++; // ✅ Move left pointer
-        } else {
-            result.push(right[j]);
-            j++; // ✅ Move right pointer
-        }
+    let sorted = []
+    while(left.length && right.length) {
+        sorted.push(left[0] > right[0] ? left.shift() : right.shift())
     }
-
-    // 📌 Add remaining elements (if any)
-    return result.concat(left.slice(i)).concat(right.slice(j));
+    return sorted.concat(left, right)
+  
 }
 
-// 🏁 Test the function
+
 let arr = [3, 7, 1, 9, 2, 7, 8, 1];  // 🎲 Unsorted array
 console.log(mergeSort(arr));  // 📢 Output: [1, 1, 2, 3, 7, 7, 8, 9]
 

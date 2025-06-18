@@ -8,7 +8,7 @@
 
 // 🔥 Quick Sort Algorithm
 function quickSort(arr) {
-    if (arr.length <= 0) return arr
+    if (arr.length <= 1) return arr
 
     let pivot = arr[arr.length - 1]
     let left = []
@@ -16,7 +16,7 @@ function quickSort(arr) {
 
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] === pivot) continue
-        
+
         if (pivot > arr[i]) {
             left.push(arr[i])
         } else {
