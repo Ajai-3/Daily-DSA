@@ -23,8 +23,6 @@ var goodNodes = function(root) {
             prevVal = val
         }
 
-        console.log("Curr val", val, "Prev val", prevVal)
-
         traverse(node.left, prevVal)
         traverse(node.right, prevVal)
         
